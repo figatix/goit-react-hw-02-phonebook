@@ -48,9 +48,10 @@ class App extends Component {
   }
 
   handlerFilterContacts = (e) => {
-    const filteredContacts = this.state.contacts.filter(el => {
-      return (el.name === this.state.filter)
-    })
+    const { contacts, filter } = this.state
+    const normalizeName = filter.toLowerCase()
+
+    return contacts.filter(person => person.name.toLowerCase().includes(normalizeName))
   }
 
 
@@ -58,7 +59,7 @@ class App extends Component {
   render() {
 
     console.log(this.state);
-    this.handlerFilterContacts();
+    const filteredContacts = this.handlerFilterContacts();
 
 
     return (
@@ -107,7 +108,7 @@ class App extends Component {
         </label>
 
         <ul>
-          {this.state.contacts.map(({ name, id, number }) => {
+          {filteredContacts.map(({ name, id, number }) => {
             return (
               <li key={id}>
                 {name}: {number}
