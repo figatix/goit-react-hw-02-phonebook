@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/figatix/goit-react-hw-02-phonebook/static/css/main.107bb7e2.css",
-    "main.js": "/figatix/goit-react-hw-02-phonebook/static/js/main.68d2ec3a.js",
+    "main.js": "/figatix/goit-react-hw-02-phonebook/static/js/main.71c1bd39.js",
     "index.html": "/figatix/goit-react-hw-02-phonebook/index.html",
     "main.107bb7e2.css.map": "/figatix/goit-react-hw-02-phonebook/static/css/main.107bb7e2.css.map",
-    "main.68d2ec3a.js.map": "/figatix/goit-react-hw-02-phonebook/static/js/main.68d2ec3a.js.map"
+    "main.71c1bd39.js.map": "/figatix/goit-react-hw-02-phonebook/static/js/main.71c1bd39.js.map"
   },
   "entrypoints": [
     "static/css/main.107bb7e2.css",
-    "static/js/main.68d2ec3a.js"
+    "static/js/main.71c1bd39.js"
   ]
 }
