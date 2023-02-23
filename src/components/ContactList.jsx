@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { ContactItem } from "./ContactItem";
-import styled from 'styled-components';
+import { StyledContactList } from "./ContactList.styled";
 
 class ContactList extends Component {
 
@@ -21,7 +21,6 @@ class ContactList extends Component {
             filteredContacts={filteredContacts}
             onDeleteBtnClick={onDeleteBtnClick} />
         })}
-
       </StyledContactList>
     )
   }
@@ -33,13 +32,3 @@ ContactList.propTypes = {
   onDeleteBtnClick: PropTypes.func,
   filteredContacts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 }
-
-const StyledContactList = styled.ul`
-  width: 450px;
-  padding: 0 15px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 8px;
-
-`
