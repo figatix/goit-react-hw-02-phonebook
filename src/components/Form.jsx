@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-
+import styled from 'styled-components';
 
 class ContactForm extends Component {
 
@@ -45,10 +45,10 @@ class ContactForm extends Component {
 
     return (
 
-      <form onSubmit={this.handlerSubmitForm}>
-        <label>
-          <span>Name of contact</span>
-          <input
+      <StyledForm onSubmit={this.handlerSubmitForm}>
+        <StyledLabel>
+          <StyledInputTitle>Name of contact</StyledInputTitle>
+          <StyledInput
             name="name"
             type="text"
             onChange={this.onChangeInput}
@@ -57,11 +57,11 @@ class ContactForm extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </label>
+        </StyledLabel>
 
-        <label>
-          <span>Number</span>
-          <input
+        <StyledLabel>
+          <StyledInputTitle>Number</StyledInputTitle>
+          <StyledInput
             name="number"
             type="tel"
             value={number}
@@ -70,13 +70,55 @@ class ContactForm extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </label>
+        </StyledLabel>
 
-        <button type="submit">Add contact</button>
-      </form>
+        <StyledAddBtn type="submit">Add contact</StyledAddBtn>
+      </StyledForm>
     )
   }
 
 }
 
 export { ContactForm };
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width:300px;
+
+  margin-bottom: 32px;
+`;
+const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+
+  :hover input{
+    border: 2px solid #9348B7;
+  }
+`;
+const StyledInputTitle = styled.span`
+  font-size: 20px;
+  margin-bottom: 8px;
+`;
+
+const StyledInput = styled.input`
+  height:32px;
+  padding: 4px 16px;
+  font-weight: 700;
+  color: #9348B7;
+  border: 1px solid #6CB748;
+  transition: border 250ms ease-in-out;
+`
+const StyledAddBtn = styled.button`
+  width: 100%;
+  height: 32px;
+  background-color: #9348B7;
+  color: #fff;
+
+  transition: background-color 250ms ease-in-out;
+
+  :hover {
+    background-color: #E1341E;
+  }
+`

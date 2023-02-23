@@ -4,6 +4,8 @@ import { ContactForm } from "./Form";
 import { Filter } from "./Filter";
 import { ContactList } from "./ContactList";
 
+import styled from 'styled-components'
+
 
 class App extends Component {
   state = {
@@ -45,7 +47,6 @@ class App extends Component {
     })
   }
 
-
   onDeleteBtnClick = (id) => {
     const newContacts = this.state.contacts.filter(person => person.id !== id)
 
@@ -65,13 +66,13 @@ class App extends Component {
     const filteredContacts = this.handlerFilterContacts();
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Wrapper>
+        <StyledMainTitle>Phonebook</StyledMainTitle>
         <ContactForm
           addNewContact={this.addNewContact}
         />
 
-        <h2>Contact List</h2>
+        <StyledTitle>Contact List</StyledTitle>
         <Filter
           onChangeFilter={this.onChangeFilter}
           filter={this.state.filter}
@@ -82,9 +83,30 @@ class App extends Component {
           filteredContacts={filteredContacts}
         />
 
-      </div>
+      </Wrapper>
     )
   }
 };
 
 export { App };
+
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  padding: 30px 0;
+  max-width:700px;
+  margin: 0 auto;
+`;
+
+const StyledMainTitle = styled.h1`
+  font-size: 32px;
+  color: #E1341E;
+  margin-bottom: 16px;
+`;
+const StyledTitle = styled.h2`
+  font-size: 24px;
+  color: #9348B7;
+  margin-bottom: 12px;
+`;
