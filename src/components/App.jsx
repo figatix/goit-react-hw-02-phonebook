@@ -7,43 +7,44 @@ import { ContactList } from "./ContactList";
 
 class App extends Component {
   state = {
-    contacts: [],
-    name: '',
-    number: '',
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
   }
 
-  onChangeInput = (e) => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    })
-  }
-
-
-  handlerSubmitForm = (e) => {
-    e.preventDefault();
-    const { name, number, contacts } = this.state;
+  addNewContact = (newContact) => {
+    const { contacts } = this.state;
+    const { name } = newContact
 
     const isExist = contacts.find(person => person.name === name)
 
     if (isExist) {
       alert(`${name} is already in contacts.`)
-      return
+      return false
     }
 
-    const newContact = {
+    const finallyNewContact = {
       id: nanoid(),
-      name,
-      number,
+      ...newContact
     }
 
     this.setState({
-      contacts: [newContact, ...contacts],
-      name: "",
-      number: "",
+      contacts: [finallyNewContact, ...contacts]
+    })
+
+    return true
+  }
+
+  onChangeFilter = ({ target: { name, value } }) => {
+    this.setState({
+      [name]: value,
     })
   }
+
 
   onDeleteBtnClick = (id) => {
     const newContacts = this.state.contacts.filter(person => person.id !== id)
@@ -67,15 +68,12 @@ class App extends Component {
       <div>
         <h1>Phonebook</h1>
         <ContactForm
-          handlerSubmitForm={this.handlerSubmitForm}
-          onChangeInput={this.onChangeInput}
-          personName={this.state.name}
-          personNumber={this.state.number}
+          addNewContact={this.addNewContact}
         />
 
         <h2>Contact List</h2>
         <Filter
-          onChangeInput={this.onChangeInput}
+          onChangeFilter={this.onChangeFilter}
           filter={this.state.filter}
         />
 

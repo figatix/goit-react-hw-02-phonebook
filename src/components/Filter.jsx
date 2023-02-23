@@ -6,7 +6,7 @@ import React, { Component } from "react";
 class Filter extends Component {
 
   render() {
-    const { filter, onChangeInput } = this.props
+    const { filter, onChangeFilter } = this.props
 
     return (
 
@@ -15,7 +15,7 @@ class Filter extends Component {
         <input
           name="filter"
           value={filter}
-          onChange={onChangeInput}
+          onChange={onChangeFilter}
           type="text"
         />
       </label>

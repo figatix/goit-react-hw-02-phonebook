@@ -1,23 +1,58 @@
+
 import React, { Component } from "react";
 
 
 class ContactForm extends Component {
 
+  state = {
+    name: '',
+    number: '',
+  }
 
+  onChangeInput = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    })
+  }
+
+  handlerSubmitForm = (e) => {
+    e.preventDefault();
+    const { name, number } = this.state;
+    const { addNewContact } = this.props;
+
+    const newContact = {
+      name,
+      number,
+    }
+
+    const isSuccess = addNewContact(newContact)
+
+    if (isSuccess) {
+      this.reset()
+    }
+  }
+
+  reset = () => {
+    this.setState({
+      name: "",
+      number: "",
+    })
+  }
 
   render() {
-    const { handlerSubmitForm, onChangeInput, personName, personNumber } = this.props
+    const { name, number } = this.state
 
     return (
 
-      <form onSubmit={handlerSubmitForm}>
+      <form onSubmit={this.handlerSubmitForm}>
         <label>
           <span>Name of contact</span>
           <input
             name="name"
             type="text"
-            onChange={onChangeInput}
-            value={personName}
+            onChange={this.onChangeInput}
+            value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -29,8 +64,8 @@ class ContactForm extends Component {
           <input
             name="number"
             type="tel"
-            value={personNumber}
-            onChange={onChangeInput}
+            value={number}
+            onChange={this.onChangeInput}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
