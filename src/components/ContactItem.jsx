@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from 'styled-components';
 
@@ -23,6 +23,12 @@ class ContactItem extends Component {
 }
 
 export { ContactItem };
+
+
+ContactItem.propTypes = {
+  onDeleteBtnClick: PropTypes.func,
+  filteredContacts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+}
 
 const StyledContactItem = styled.li`
   font-size: 16px;

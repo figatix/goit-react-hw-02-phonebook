@@ -1,5 +1,5 @@
 
-
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from 'styled-components';
 
@@ -23,6 +23,11 @@ class Filter extends Component {
 }
 
 export { Filter };
+
+Filter.propTypes = {
+  onChangeFilter: PropTypes.func,
+  filter: PropTypes.string.isRequired
+}
 
 const StyledFilterLabel = styled.label`
   display: flex;
@@ -50,16 +55,4 @@ const StyledFilterInput = styled.input`
   color: #9348B7;
   border: 1px solid #6CB748;
   transition: border 250ms ease-in-out;
-`
-const StyledAddBtn = styled.button`
-  width: 100%;
-  height: 32px;
-  background-color: #9348B7;
-  color: #fff;
-
-  transition: background-color 250ms ease-in-out;
-
-  :hover {
-    background-color: #E1341E;
-  }
 `

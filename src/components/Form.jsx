@@ -1,5 +1,6 @@
 
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 
 class ContactForm extends Component {
@@ -22,7 +23,7 @@ class ContactForm extends Component {
     const { addNewContact } = this.props;
 
     const newContact = {
-      name,
+      name: name,
       number,
     }
 
@@ -80,6 +81,10 @@ class ContactForm extends Component {
 }
 
 export { ContactForm };
+
+ContactForm.propTypes = {
+  addNewContact: PropTypes.func,
+}
 
 const StyledForm = styled.form`
   display: flex;

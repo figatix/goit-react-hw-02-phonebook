@@ -22,7 +22,7 @@ class App extends Component {
     const { contacts } = this.state;
     const { name } = newContact
 
-    const isExist = contacts.find(person => person.name === name)
+    const isExist = contacts.find(person => person.name === name.trim())
 
     if (isExist) {
       alert(`${name} is already in contacts.`)
@@ -57,7 +57,7 @@ class App extends Component {
 
   handlerFilterContacts = (e) => {
     const { contacts, filter } = this.state
-    const normalizeName = filter.toLowerCase()
+    const normalizeName = filter.toLowerCase().trim()
 
     return contacts.filter(person => person.name.toLowerCase().includes(normalizeName))
   }
