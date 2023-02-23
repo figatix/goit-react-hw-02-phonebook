@@ -48,11 +48,9 @@ class App extends Component {
   }
 
   onDeleteBtnClick = (id) => {
-    const newContacts = this.state.contacts.filter(person => person.id !== id)
-
-    this.setState({
-      contacts: newContacts,
-    })
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(person => person.id !== id)
+    }))
   }
 
   handlerFilterContacts = (e) => {

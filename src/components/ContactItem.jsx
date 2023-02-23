@@ -1,25 +1,16 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React from "react";
 import styled from 'styled-components';
 
-class ContactItem extends Component {
+const ContactItem = ({ personName, personNumber, id, onDeleteBtnClick }) => {
 
-  render() {
-    const { filteredContacts, onDeleteBtnClick } = this.props
+  return (
+    <StyledContactItem>
+      {personName}: {personNumber}
+      <StyledAddBtn onClick={() => onDeleteBtnClick(id)} type="button">Delete</StyledAddBtn>
+    </StyledContactItem>
+  )
 
-    return (
-      <>
-        {filteredContacts.map(({ name, id, number }) => {
-          return (
-            <StyledContactItem key={id}>
-              {name}: {number}
-              <StyledAddBtn onClick={() => onDeleteBtnClick(id)} type="button">Delete</StyledAddBtn>
-            </StyledContactItem>
-          )
-        })}
-      </>
-    )
-  }
 }
 
 export { ContactItem };
@@ -27,7 +18,10 @@ export { ContactItem };
 
 ContactItem.propTypes = {
   onDeleteBtnClick: PropTypes.func,
-  filteredContacts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  personName: PropTypes.string.isRequired,
+  personNumber: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+
 }
 
 const StyledContactItem = styled.li`
